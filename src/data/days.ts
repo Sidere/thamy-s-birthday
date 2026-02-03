@@ -15,7 +15,7 @@ export interface DayData {
 export const days: DayData[] = [
   {
     id: 1,
-    date: 3,
+    date: 12,
     theme: "gaze",
     title: "O olhar",
     subtitle: "Dia 1 de 5",
@@ -28,7 +28,7 @@ export const days: DayData[] = [
   },
   {
     id: 2,
-    date: 3,
+    date: 13,
     theme: "memory",
     title: "A memória",
     subtitle: "Dia 2 de 5",
@@ -41,7 +41,7 @@ export const days: DayData[] = [
   },
   {
     id: 3,
-    date: 3,
+    date: 14,
     theme: "detail",
     title: "O detalhe",
     subtitle: "Dia 3 de 5",
@@ -54,7 +54,7 @@ export const days: DayData[] = [
   },
   {
     id: 4,
-    date: 3,
+    date: 15,
     theme: "time",
     title: "O tempo",
     subtitle: "Dia 4 de 5",
@@ -67,7 +67,7 @@ export const days: DayData[] = [
   },
   {
     id: 5,
-    date: 3,
+    date: 16,
     theme: "record",
     title: "O registro",
     subtitle: "O dia chegou",
