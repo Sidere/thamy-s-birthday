@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# 🎂 Thamy’s Birthday — Uma Carta de Amor Gamificada
 
-## Project info
+Um **mini-jogo web 2D feito em React**, criado como presente de aniversário — e também como projeto de portfólio.  
+Esta experiência foi pensada para ser **intimista, emocional e simbólica**, priorizando sentimento em vez de complexidade técnica.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+A cada dia, uma nova interação e uma nova dica são desbloqueadas, levando à revelação final do presente. 💜
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 💡 Conceito
 
-**Use Lovable**
+Este projeto é uma **experiência de contagem regressiva gamificada**, criada para liberar **uma dica por dia** até o aniversário (dia 16), culminando na revelação de uma **câmera Kodak F8**.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+A narrativa explora temas como:
+- memória  
+- tempo  
+- atenção  
+- detalhes  
+- o ato de registrar momentos  
 
-Changes made via Lovable will be committed automatically to this repo.
+O jogo é **não competitivo**, **não possui estados de falha** e foi pensado para **uma única pessoa**.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🎮 Design da Experiência
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Clima:** afeto, nostalgia, curiosidade  
+- **Ritmo:** uma interação curta por dia  
+- **Estilo visual:** 2D minimalista  
+- **Linguagem:** poética, curta e direta  
+- **Objetivo:** conexão emocional acima de desafio  
 
-Follow these steps:
+Cada interação é simbólica, não mecânica.  
+A experiência foi feita para ser **sentida**, não vencida.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🧠 Estrutura Narrativa
 
-# Step 3: Install the necessary dependencies.
-npm i
+Cada dia representa um conceito simbólico:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. **O Olhar** — aprender a observar com atenção  
+2. **Memória** — relembrar momentos compartilhados  
+3. **Detalhe** — perceber o que normalmente passa despercebido  
+4. **Tempo** — espera, antecipação e presença  
+5. **Registro** — guardar o que realmente importa  
 
-**Edit a file directly in GitHub**
+A experiência prepara emocionalmente a jogadora para a revelação final.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 🛠 Stack Tecnológica
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **React** + **Vite**
+- **TypeScript**
+- **CSS Modules / Styled Components**
+- **Framer Motion** (micro-animações)
+- **LocalStorage** (persistência de progresso)
+- **Vercel** (deploy e hospedagem)
 
-## What technologies are used for this project?
+O projeto funciona **100% client-side**, sem backend.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## ☁️ Deploy
 
-## How can I deploy this project?
+A aplicação está hospedada na **Vercel**, com deploy contínuo.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- SPA (Single Page Application)
+- Compatível com React Router
+- Deploy automático a cada push na branch `main`
+- HTTPS habilitado por padrão
 
-## Can I connect a custom domain to my Lovable project?
+As rotas SPA são tratadas via `vercel.json`.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📁 Estrutura do Projeto
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```txt
+src/
+ ├─ pages/
+ │   ├─ Map.tsx           // Mapa de seleção dos dias
+ │   ├─ Day.tsx           // Interação diária genérica
+ │   └─ Final.tsx         // Revelação do presente
+ ├─ components/
+ │   ├─ LevelCard.tsx
+ │   ├─ LockedLevel.tsx
+ │   ├─ TextBox.tsx
+ │   └─ Interaction.tsx
+ ├─ data/
+ │   └─ days.ts           // Conteúdo narrativo e textual
+ ├─ assets/
+ │   ├─ images/
+ │   ├─ icons/
+ │   └─ sounds/
+ └─ utils/
+     ├─ getToday.ts
+     └─ isUnlocked.ts
