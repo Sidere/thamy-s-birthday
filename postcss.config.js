@@ -4,3 +4,4 @@ export default {
     autoprefixer: {},
   },
 };
+// End of file postcss.config.js

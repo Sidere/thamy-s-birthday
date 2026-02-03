@@ -140,3 +140,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+// End of file tailwind.config.ts
