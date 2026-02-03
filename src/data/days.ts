@@ -15,7 +15,7 @@ export interface DayData {
 export const days: DayData[] = [
   {
     id: 1,
-    date: 12,
+    date: 3,
     theme: "gaze",
     title: "O olhar",
     subtitle: "Dia 1 de 5",
@@ -28,7 +28,7 @@ export const days: DayData[] = [
   },
   {
     id: 2,
-    date: 13,
+    date: 3,
     theme: "memory",
     title: "A memória",
     subtitle: "Dia 2 de 5",
@@ -41,7 +41,7 @@ export const days: DayData[] = [
   },
   {
     id: 3,
-    date: 14,
+    date: 3,
     theme: "detail",
     title: "O detalhe",
     subtitle: "Dia 3 de 5",
@@ -49,12 +49,12 @@ export const days: DayData[] = [
     hint: "Ajuste o foco e veja o que estava escondido.",
     interactionType: "slider",
     interactionPrompt: "Ajuste a nitidez",
-    successMessage: "A clareza revela o extraordinário.",
+    successMessage: "Tem coisas que só fazem sentido quando a gente presta atenção nos detalhes.",
     icon: "sparkles"
   },
   {
     id: 4,
-    date: 15,
+    date: 3,
     theme: "time",
     title: "O tempo",
     subtitle: "Dia 4 de 5",
@@ -67,14 +67,14 @@ export const days: DayData[] = [
   },
   {
     id: 5,
-    date: 16,
+    date: 3,
     theme: "record",
     title: "O registro",
     subtitle: "O dia chegou",
-    text: "Alguns momentos merecem ser eternizados.",
+    text: "E tem foto que só tu sabe tirar",
     hint: "Para que você capture o mundo do seu jeito.",
     interactionType: "reveal",
-    interactionPrompt: "Descubra seu presente",
+    interactionPrompt: "E se tu pudesse capturar tudo isso?",
     successMessage: "Feliz aniversário, meu amor.",
     icon: "camera"
   }
@@ -85,5 +85,5 @@ export const gameConfig = {
   endDate: 16, // Birthday
   birthdayMonth: 1, // February (0-indexed would be 1)
   giftName: "Kodak Film F8",
-  giftDescription: "Para capturar o mundo do seu jeito, com a beleza que só você enxerga."
+  giftDescription: "Tô ansiosa pra ver as fotos lindas que tu vai tirar, te amo",
 };

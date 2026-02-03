@@ -4,6 +4,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import photo1 from '@/assets/photo1.png';
 import photo2 from '@/assets/photo2.png';
 import photo3 from '@/assets/photo3.png';
+import photo4 from '@/assets/photo4.png';
+import photo5 from '@/assets/photo5.png';
+// import photo6 from '@/assets/photo6.png';
+// import photo7 from '@/assets/photo7.png';
+// import photo8 from '@/assets/photo8.png';
 
 export const carouselPhotos = [
     {
@@ -24,9 +29,21 @@ export const carouselPhotos = [
         alt: 'Foto 3',
         caption: 'O mundo fica mais bonito quando é visto junto.',
     },
+    {
+        id: 4,
+        src: photo4,
+        alt: 'Foto 4',
+        caption: 'Os melhores momentos são aqueles que a gente guarda no coração.',
+    },
+    {
+        id: 5,
+        src: photo5,
+        alt: 'Foto 5',
+        caption: 'A vida é mais rica quando compartilhada.',
+    },
 ];
 
-// ─── Placeholder visual (quando src está vazio) ───────────────────
+// ─── Placeholder visual ─────────────────────────────────────────────
 const PhotoPlaceholder = ({ index }: { index: number }) => {
     const gradients = [
         'from-rose-soft/60 to-primary/20',
@@ -61,34 +78,37 @@ const PhotoPlaceholder = ({ index }: { index: number }) => {
 
 // ─── Props ──────────────────────────────────────────────────────────
 interface PhotoCarouselProps {
-    onFinish: () => void; // chamado quando a usuária passa pela última foto
+    onFinish: () => void;
 }
 
-// ─── Componente ─────────────────────────────────────────────────────
+// ─── Componente infinito ────────────────────────────────────────────
 export const PhotoCarousel = ({ onFinish }: PhotoCarouselProps) => {
     const [current, setCurrent] = useState(0);
     const [direction, setDirection] = useState<number>(1);
+    const [viewedPhotos, setViewedPhotos] = useState<Set<number>>(new Set([1])); // começa na primeira
     const touchStart = useRef<number | null>(null);
     const touchEnd = useRef<number | null>(null);
-    const MIN_SWIPE = 40; // px mínimos para considerar swipe
+    const MIN_SWIPE = 40;
 
     const total = carouselPhotos.length;
-    const isLast = current === total - 1;
+    const allViewed = viewedPhotos.size === total;
 
-    // ── navegação ──
-    const goTo = (index: number) => {
-        setDirection(index > current ? 1 : -1);
-        setCurrent(index);
+    // ── navegação circular ──
+    const goTo = (newIndex: number, dir: number) => {
+        setDirection(dir);
+        setCurrent(newIndex);
+        // marca como visualizada
+        setViewedPhotos((prev) => new Set(prev).add(carouselPhotos[newIndex].id));
     };
 
-    const prev = () => { if (current > 0) goTo(current - 1); };
+    const prev = () => {
+        const newIndex = current === 0 ? total - 1 : current - 1;
+        goTo(newIndex, -1);
+    };
 
     const next = () => {
-        if (isLast) {
-            onFinish();
-        } else {
-            goTo(current + 1);
-        }
+        const newIndex = (current + 1) % total;
+        goTo(newIndex, 1);
     };
 
     // ── swipe (mobile) ──
@@ -176,18 +196,16 @@ export const PhotoCarousel = ({ onFinish }: PhotoCarouselProps) => {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* ── setas (desktop) ── */}
-                {current > 0 && (
-                    <button
-                        onClick={prev}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 z-10
-                       w-8 h-8 rounded-full bg-background/70 backdrop-blur-sm
-                       flex items-center justify-center
-                       hover:bg-background/90 transition-colors"
-                    >
-                        <ChevronLeft className="w-4 h-4 text-foreground" />
-                    </button>
-                )}
+                {/* ── setas (sempre presentes em modo infinito) ── */}
+                <button
+                    onClick={prev}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+                     w-8 h-8 rounded-full bg-background/70 backdrop-blur-sm
+                     flex items-center justify-center
+                     hover:bg-background/90 transition-colors"
+                >
+                    <ChevronLeft className="w-4 h-4 text-foreground" />
+                </button>
 
                 <button
                     onClick={next}
@@ -196,8 +214,30 @@ export const PhotoCarousel = ({ onFinish }: PhotoCarouselProps) => {
                      flex items-center justify-center
                      hover:bg-background/90 transition-colors"
                 >
-                    <ChevronRight className={`w-4 h-4 ${isLast ? 'text-gold' : 'text-foreground'}`} />
+                    <ChevronRight className="w-4 h-4 text-foreground" />
                 </button>
+
+                {/* ── botão de continuar (aparece sobre a foto quando viu todas) ── */}
+                <AnimatePresence>
+                    {allViewed && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="absolute inset-0 bg-background/60 backdrop-blur-sm
+                         flex items-center justify-center z-20"
+                        >
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={onFinish}
+                                className="btn-intimate shadow-glow"
+                            >
+                                Continuar
+                            </motion.button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
 
             {/* ── caption poética ── */}
@@ -214,38 +254,25 @@ export const PhotoCarousel = ({ onFinish }: PhotoCarouselProps) => {
                 </motion.p>
             </AnimatePresence>
 
-            {/* ── dots ── */}
+            {/* ── dots (mostra quais já foram vistas) ── */}
             <div className="flex gap-2 mt-4">
-                {carouselPhotos.map((_, i) => (
+                {carouselPhotos.map((photo, i) => (
                     <button
-                        key={i}
-                        onClick={() => goTo(i)}
+                        key={photo.id}
+                        onClick={() => goTo(i, i > current ? 1 : -1)}
                         className="transition-all duration-300"
                     >
                         <div
                             className={`rounded-full transition-all duration-300 ${i === current
                                 ? 'w-6 h-2 bg-primary'
-                                : 'w-2 h-2 bg-muted hover:bg-muted-foreground'
+                                : viewedPhotos.has(photo.id)
+                                    ? 'w-2 h-2 bg-gold/60 hover:bg-gold'
+                                    : 'w-2 h-2 bg-muted hover:bg-muted-foreground'
                                 }`}
                         />
                     </button>
                 ))}
             </div>
-
-            {/* ── botão no último slide ── */}
-            {isLast && (
-                <motion.button
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={onFinish}
-                    className="btn-intimate mt-5"
-                >
-                    Continuar
-                </motion.button>
-            )}
         </div>
     );
 };
