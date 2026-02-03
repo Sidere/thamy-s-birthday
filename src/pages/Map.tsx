@@ -27,7 +27,7 @@ const Map = () => {
         </motion.div>
         
         <h1 className="font-serif text-3xl md:text-4xl text-foreground mb-2">
-          5 dias para você
+          5 dicas para você
         </h1>
         <p className="font-sans text-muted-foreground max-w-xs mx-auto">
           Uma jornada de descobertas até o seu aniversário
@@ -74,7 +74,7 @@ const Map = () => {
         className="py-8 text-center"
       >
         <p className="font-sans text-xs text-muted-foreground/60">
-          Feito com amor, para você ✨
+          Feito com amor, para tu linda ✨
         </p>
       </motion.footer>
     </div>

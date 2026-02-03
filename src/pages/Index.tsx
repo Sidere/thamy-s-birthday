@@ -65,7 +65,9 @@ const Index = () => {
           transition={{ delay: 0.5 }}
           className="font-serif text-4xl md:text-5xl text-foreground mb-4"
         >
-          Um presente para você
+          Soube que tu gosta de
+          <br />
+          presentes lindinha?
         </motion.h1>
 
         {/* Decorative line */}
@@ -83,7 +85,7 @@ const Index = () => {
           transition={{ delay: 0.8 }}
           className="font-sans text-lg text-muted-foreground max-w-xs mx-auto mb-12 leading-relaxed"
         >
-          Uma jornada de 5 dias até uma surpresa especial no seu aniversário.
+          Bora jogar um game e descobrir teu presente de aniversário?
         </motion.p>
 
         {/* CTA Button */}
@@ -106,7 +108,7 @@ const Index = () => {
           transition={{ delay: 1.5 }}
           className="font-sans text-xs text-muted-foreground/60 mt-8"
         >
-          Cada dia revela uma nova descoberta ✨
+          Todos os dias a gente descobre algo ✨
         </motion.p>
       </motion.div>
 

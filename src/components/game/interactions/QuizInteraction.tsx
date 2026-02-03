@@ -9,9 +9,9 @@ interface QuizInteractionProps {
 
 // Simple options - all lead to success (no failure state)
 const options = [
-  "Um café, um sorriso",
-  "Uma conversa que não queria acabar",
-  "Um olhar que dizia tudo"
+  "Um café com eight",
+  "Um baseado suspeito",
+  "Festa do fim do mundo"
 ];
 
 export const QuizInteraction = ({ prompt, onComplete }: QuizInteractionProps) => {
